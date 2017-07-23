@@ -13,7 +13,6 @@ namespace TicTacToe
     public partial class Form1 : Form
     {
         int move = 0;
-        bool side = true;
         Tuple<char, char> sideIcon = new Tuple<char, char>('X','O');
 
         public Form1()
@@ -44,27 +43,25 @@ namespace TicTacToe
         
         public void AssignMark(Label clickedLabel)
         {
-            if (side)
+            if (move%2 == 0)
             {
                 clickedLabel.Text = char.ToString(sideIcon.Item1);
                 gameMessage.Text = "Player 2's turn (O)";
-                side = false;
             }
             else
             {
                 clickedLabel.Text = char.ToString(sideIcon.Item2);
                 gameMessage.Text = "Player 1's turn (X)";
-                side = true;
             }
         }
 
         public void CheckWin()
         {
-            //There are 8 possible ways a player can win
             Label[] labels = new Label[9]
             {
                 label1, label2, label3, label4, label5, label6, label7, label8, label9
             };
+            //There are 8 possible ways a player can win
             short[,] winSeq = new short[,]
             {
                 {0, 1, 2},
@@ -110,11 +107,6 @@ namespace TicTacToe
             {
                 gameMessage.Text = "No player won! It's a tie!";
             }
-        }
-
-        private void label10_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
