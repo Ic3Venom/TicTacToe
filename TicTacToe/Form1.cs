@@ -19,11 +19,12 @@ namespace TicTacToe
         public Form1()
         {
             InitializeComponent();
+            gameMessage.Text = "Player 1's turn (X)";
         }
+
         private void label_Click(object sender, EventArgs e)
         {
             Label clickedLabel = sender as Label;
-            string y = clickedLabel.Text;
 
             if (clickedLabel.Text == "")
             {
@@ -43,14 +44,16 @@ namespace TicTacToe
         
         public void AssignMark(Label clickedLabel)
         {
-            if (side == true)
+            if (side)
             {
                 clickedLabel.Text = char.ToString(sideIcon.Item1);
+                gameMessage.Text = "Player 2's turn (O)";
                 side = false;
             }
             else
             {
                 clickedLabel.Text = char.ToString(sideIcon.Item2);
+                gameMessage.Text = "Player 1's turn (X)";
                 side = true;
             }
         }
@@ -89,11 +92,11 @@ namespace TicTacToe
 
                     if ( labels[ winSeq[i, 0] ].Text.Equals("X") )
                     {
-                        MessageBox.Show("Player 1 Wins!");
+                        gameMessage.Text = "Player 1 Wins!";
                     }
                     else
                     {
-                        MessageBox.Show("Player 2 Wins!");
+                        gameMessage.Text = "Player 2 Wins!";
                     }
 
                     //set to sentient value
@@ -105,8 +108,13 @@ namespace TicTacToe
 
             if( move == 9 )
             {
-                MessageBox.Show("No player won! It's a tie!");
+                gameMessage.Text = "No player won! It's a tie!";
             }
+        }
+
+        private void label10_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
